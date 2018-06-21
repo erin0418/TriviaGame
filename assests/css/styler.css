@@ -50,3 +50,13 @@ footer {
     top: 80%;
     width: 600px;
 }
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    width: 350px;
+}
+p {
+    color:white;
+}

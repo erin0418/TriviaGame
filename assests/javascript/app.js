@@ -1,5 +1,6 @@
 var intervalID;
 var time = 30;
+var imageOne = "../images/ed-snider.jpg"
 var questions = [{
     question: "When did the Philadelphia Flyers join the NHL?",
     answers: [1965, 1967, 1973, 1982],
@@ -26,6 +27,7 @@ var questions = [{
 },
 ]
 
+gameStart ();
 
 function gameStart () {
     $("#question").html(questions[0].question);
@@ -33,40 +35,48 @@ function gameStart () {
     $("#answerTwo").html(questions[0].answers[1]);
     $("#answerThree").html(questions[0].answers[2]);
     $("#answerFour").html(questions[0].answers[3]);
-    intervalId = setInterval(decrement(), 30000);
-    $("#answerOne").on("click", function () {
+    $(".row").on("click", function () {
         $("#container").html("<img src='http://blog.startwithwhy.com/.a/6a00d834525fff69e201bb08887fa8970d-pi'>");
+        $("#text").html("The correct answer was 1967");
+        $("#timer").html("Click to go on!");
+        $("#timer").on("click", function (){
+            questionTwo ();
+        });
     });
     $("#answerTwo").on("click", function () {
-        $("#container").html("<img src='https://via.placeholder.com/350x150'>");
+        $("#container").html("<img src='http://journeysinto.com/wp-content/uploads/2016/04/ed-snider-and-keith-allen-during-inaugural-season_std-1.jpg'>");
+        $("#text").html("Ed Snider founded the Philadelphia Flyers in 1967. He served as the President of the franchise until his recent passing in 2016.");
+        $("#timer").html("Click to go on!");
+        $("#timer").on("click", function (){
+
     });
-    $("#answerThree").on("click", function () {
-        $("#container").html("<img src='http://blog.startwithwhy.com/.a/6a00d834525fff69e201bb08887fa8970d-pi'>");
-    });
-    $("#answerFour").on("click", function () {
-        $("#container").html("<img src='http://blog.startwithwhy.com/.a/6a00d834525fff69e201bb08887fa8970d-pi'>");
     });
 }
-gameStart ();
+
+
 function questionTwo () {
     $("#question").html(questions[1].question);
     $("#answerOne").html(questions[1].answers[0]);
     $("#answerTwo").html(questions[1].answers[1]);
     $("#answerThree").html(questions[1].answers[2]);
     $("#answerFour").html(questions[1].answers[3]);
-    $("#answerOne").on("click", function () {
+    $(".row").on("click", function () {
         $("#container").html("<img src='http://blog.startwithwhy.com/.a/6a00d834525fff69e201bb08887fa8970d-pi'>");
-    });
-    $("#answerTwo").on("click", function () {
-        $("#container").html("<img src='http://blog.startwithwhy.com/.a/6a00d834525fff69e201bb08887fa8970d-pi'>");
+        $("#text").html("The correct answer was Reggie Leech.");
+        $("#timer").html("Click to go on!");
+        $("#timer").on("click", function (){
+            questionThree ();
+        });
     });
     $("#answerThree").on("click", function () {
-        $("#container").html("<img src='https://via.placeholder.com/350x150'>");
-    });
-    $("#answerFour").on("click", function () {
-        $("#container").html("<img src='http://blog.startwithwhy.com/.a/6a00d834525fff69e201bb08887fa8970d-pi'>");
+        $("#container").html("<img src='https://via.placeholder.com/350x150'>");        $("#text").html("Fun fact about Reggie.");
+        $("#timer").html("Click to go on!");
+        $("#timer").on("click", function (){
+            questionThree ();
+        });
     });
 }
+
 function questionThree () {
     $("#question").html(questions[2].question);
     $("#answerOne").html(questions[2].answers[0]);
