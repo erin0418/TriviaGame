@@ -29,55 +29,54 @@ var questions = [{
     correct: 3
 },
 ]
-
 var showQuestion;
 var count = 0;
 var correct = 0;
 var wrong = 0;
 var timer = 15;
 
-
 $("#container").on("click", ".row", nextQuestion);
 
+// Displays first question
 function displayQuestion() {
     $("#question").html(questions[count].question);
     $("#answerOne").html(questions[count].answers[0]);
     $("#answerTwo").html(questions[count].answers[1]);
     $("#answerThree").html(questions[count].answers[2]);
     $("#answerFour").html(questions[count].answers[3]);
-   
     if(showQuestion === undefined) {
         showQuestion = setTimeout(nextQuestion, 15000);
 }
+showQuestion = undefined;
 }
-
+// Displays following questions
 function nextQuestion() {
-
-  count++
-
+  if(count++<questions.length) {
     $("#question").html(questions[count].question);
     $("#answerOne").html(questions[count].answers[0]);
     $("#answerTwo").html(questions[count].answers[1]);
     $("#answerThree").html(questions[count].answers[2]);
     $("#answerFour").html(questions[count].answers[3]);
-        
-  setTimeout(displayQuestion, 15000);
-
-  if (count === questions.length)
-    score ();
-
+    
+    if(showQuestion === undefined) { 
+        showQuestion = setTimeout(nextQuestion, 15000);
+  }
 }
+  else {
+      score ();
+  }
+  showQuestion = undefined;
+}
+// Displays score page at end
 function score () {
-    if (count === 0){
-        $("#answerTwo").on("click", function (){
-            correct++;
-            console.log(correct);
-        })
+    $("#question").html("Total Score!");
+    $("#answerOne").html("Answers correct: " + correct);
+    $("#answerTwo").html("Answers wrong: " + wrong);
+    $("#answerThree").html("Thanks for playing!");
+    $("#answerFour").html("Try again?");
     }
-    else {
-        wrong++;
-        console.log(wrong)
-    }
-}
+
+// TODO: ADD SCORE COUNT FOR EACH QUESTION
+// TODO: DISPLAY TIMER TIME LEFT
 
 displayQuestion();
