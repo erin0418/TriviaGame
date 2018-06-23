@@ -46,6 +46,7 @@ function decrease() {
         clearInterval(time);
         nextQuestion();
         seconds = 15;
+        timer();
     }
     }
 
