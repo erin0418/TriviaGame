@@ -29,13 +29,31 @@ var questions = [{
     correct: 3
 },
 ]
-var showQuestion;
+var time;
 var count = 0;
 var correct = 0;
 var wrong = 0;
-var timer = 15;
+var seconds = 15;
+var unanswered = 0;
 
 $("#container").on("click", ".row", nextQuestion);
+
+
+function decrease() {
+    seconds--
+    $("#timer").html("Time Left: " + seconds)
+    if(seconds === 0) {
+        clearInterval(time);
+        nextQuestion();
+        seconds = 15;
+    }
+    }
+
+function timer() {
+    time = setInterval(decrease, 1000);
+    $("#timer").html("Time Left: " + seconds)
+}
+
 
 // Displays first question
 function displayQuestion() {
@@ -44,10 +62,7 @@ function displayQuestion() {
     $("#answerTwo").html(questions[count].answers[1]);
     $("#answerThree").html(questions[count].answers[2]);
     $("#answerFour").html(questions[count].answers[3]);
-    if(showQuestion === undefined) {
-        showQuestion = setTimeout(nextQuestion, 15000);
-}
-showQuestion = undefined;
+    timer ();
 }
 // Displays following questions
 function nextQuestion() {
@@ -57,15 +72,7 @@ function nextQuestion() {
     $("#answerTwo").html(questions[count].answers[1]);
     $("#answerThree").html(questions[count].answers[2]);
     $("#answerFour").html(questions[count].answers[3]);
-    
-    if(showQuestion === undefined) { 
-        showQuestion = setTimeout(nextQuestion, 15000);
   }
-}
-  else {
-      score ();
-  }
-  showQuestion = undefined;
 }
 // Displays score page at end
 function score () {
@@ -73,10 +80,9 @@ function score () {
     $("#answerOne").html("Answers correct: " + correct);
     $("#answerTwo").html("Answers wrong: " + wrong);
     $("#answerThree").html("Thanks for playing!");
-    $("#answerFour").html("Try again?");
+    $("#answerFour").html(" ");
     }
 
 // TODO: ADD SCORE COUNT FOR EACH QUESTION
-// TODO: DISPLAY TIMER TIME LEFT
 
 displayQuestion();
