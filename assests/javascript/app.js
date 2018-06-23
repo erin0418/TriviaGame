@@ -30,25 +30,40 @@ var questions = [{
 },
 ]
 var time;
-var count = 0;
-var correct = 0;
-var wrong = 0;
+var i = 0;
 var seconds = 15;
+var right = 0;
+var wrong = 0;
 var unanswered = 0;
 
-$("#container").on("click", ".row", nextQuestion);
+var correct_1 = questions[0].answers[1];
+var correct_2 = questions[1].answers[2];
+var correct_3 = questions[2].answers[3];
+var correct_4 = questions[3].answers[1];
+var correct_5 = questions[4].answers[1];
+var correct_6 = questions[5].answers[3];
+console.log(correct_1, correct_2, correct_3, correct_4, correct_5, correct_6)
 
+$("#container").on("click", ".row", nextQuestion, reset);
 
 function decrease() {
     seconds--
     $("#timer").html("Time Left: " + seconds)
-    if(seconds === 0) {
+        if(seconds === 0) {
+            clearInterval(time);
+            nextQuestion();
+            seconds = 15;
+            timer();
+        }
+    }
+
+function reset() {
         clearInterval(time);
         nextQuestion();
         seconds = 15;
         timer();
-    }
-    }
+        $("#timer").html("Time Left: " + seconds)
+}
 
 function timer() {
     time = setInterval(decrease, 1000);
@@ -58,21 +73,21 @@ function timer() {
 
 // Displays first question
 function displayQuestion() {
-    $("#question").html(questions[count].question);
-    $("#answerOne").html(questions[count].answers[0]);
-    $("#answerTwo").html(questions[count].answers[1]);
-    $("#answerThree").html(questions[count].answers[2]);
-    $("#answerFour").html(questions[count].answers[3]);
+    $("#question").html(questions[i].question);
+    $("#answerOne").html(questions[i].answers[0]);
+    $("#answerTwo").html(questions[i].answers[1]);
+    $("#answerThree").html(questions[i].answers[2]);
+    $("#answerFour").html(questions[i].answers[3]);
     timer ();
 }
 // Displays following questions
 function nextQuestion() {
-  if(count++<questions.length) {
-    $("#question").html(questions[count].question);
-    $("#answerOne").html(questions[count].answers[0]);
-    $("#answerTwo").html(questions[count].answers[1]);
-    $("#answerThree").html(questions[count].answers[2]);
-    $("#answerFour").html(questions[count].answers[3]);
+  if(i++<questions.length) {
+    $("#question").html(questions[i].question);
+    $("#answerOne").html(questions[i].answers[0]);
+    $("#answerTwo").html(questions[i].answers[1]);
+    $("#answerThree").html(questions[i].answers[2]);
+    $("#answerFour").html(questions[i].answers[3]);
   }
 }
 // Displays score page at end
