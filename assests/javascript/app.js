@@ -57,7 +57,8 @@ function decrease() {
         }
     }
 
-function reset() {
+
+function resetWin() {
         clearInterval(time);
         nextQuestion();
         seconds = 15;
@@ -91,14 +92,13 @@ function nextQuestion() {
   }
 }
 // Displays score page at end
-function score () {
+
+function score () {   
     $("#question").html("Total Score!");
     $("#answerOne").html("Answers correct: " + correct);
     $("#answerTwo").html("Answers wrong: " + wrong);
     $("#answerThree").html("Thanks for playing!");
     $("#answerFour").html(" ");
     }
-
-// TODO: ADD SCORE COUNT FOR EACH QUESTION
 
 displayQuestion();
